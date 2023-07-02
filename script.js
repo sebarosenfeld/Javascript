@@ -6,25 +6,31 @@ let nuevaOperacion = false
 do {
     pregunta ()
     nuevaOperacion = confirm ("Quieres comprar otro producto?")
+    if (nuevaOperacion) {
+        respuesta = prompt ("Que productos deseas comprar? Pañales, equipos de oxigenoterapia, descartables")
+        alert ("Has elegido " + respuesta.toLowerCase ())
+    }
 } while (nuevaOperacion)
 
 function pregunta () {
-    let respuesta = prompt ("Que productos deseas comprar? Pañales, equipos de oxigenoterapia, descartables")
-    alert ("Has elegido " + respuesta)
+    respuesta = prompt ("Que productos deseas comprar? Pañales, equipos de oxigenoterapia, descartables")
+    alert ("Has elegido " + respuesta.toLowerCase ())
 
-    switch (respuesta) {
+    switch (respuesta.toLowerCase ()) {
         case "pañales":
-            return alert ("Tenemos distintos tamaños de pañales");
+        alert ("Tenemos distintos tamaños de pañales")
+        break;
 
         case "equipos de oxigenoterapia":
-            return alert ("Contamos con concentradores de oxigeno de ultima generación");
+        alert ("Contamos con concentradores de oxigeno de ultima generación")
+        break;
 
         case "descartables":
-            return alert ("Disponemos de gasas, apositos, jeringas, entre otros")
+        alert ("Disponemos de gasas, apositos, jeringas, entre otros")
+        break;
 
         default:
-            return alert ("Por favor seleccione una de las tres opciones")
+        alert ("Por favor seleccione una de las tres opciones")
+        break;
     }
 }
-
-pregunta ()
