@@ -59,11 +59,11 @@ function confirmarCarrito() {
 function calcularTotal() {
     console.log("Carrito de compras:");
     carrito.forEach((item) => {
-        alert(`Su carrito contiene: ${item.cantidad} pañales de ${item.producto}`)
+        alert(`Su carrito contiene: ${item.cantidad} pañales de ${item.producto} = ${item.subtotal}`)
         console.log(`- ${item.cantidad} ${item.producto}: ${item.subtotal}`);
     });
   
-    let total = carrito.reduce((sum, item) => sum + item.subtotal, 0);
+    let total = carrito.reduce((t, item) => t + item.subtotal, 0);
     alert(`Total a pagar: ${total}`)
     console.log(`Total a pagar: ${total}`);
 }
