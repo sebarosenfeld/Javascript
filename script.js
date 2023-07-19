@@ -7,8 +7,8 @@ do {
     pregunta ()
     nuevaOperacion = confirm ("Quieres comprar otro producto?")
     if (nuevaOperacion) {
-        respuesta = prompt ("Que productos deseas comprar? Pañales, equipos de oxigenoterapia, descartables")
-        alert ("Has elegido " + respuesta.toLowerCase ())
+        pregunta ()
+        confirm ("Quieres comprar otro producto?")
     }
 } while (nuevaOperacion)
 
