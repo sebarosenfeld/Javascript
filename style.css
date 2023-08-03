@@ -22,5 +22,8 @@
 .btn-agregar-carrito {
     background-color: rgb(51, 51, 80);
     color: white;
+}
 
+.btn-agregar-carrito:hover {
+    color: white;
 }

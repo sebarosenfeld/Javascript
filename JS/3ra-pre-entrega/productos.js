@@ -40,12 +40,3 @@ let productos = [
     }
 
 ];
-
-let carrito = [];
-
-// if (localStorage.getItem("carrito")) {
-//     carrito = JSON.parse(localStorage.getItem("carrito"))
-// } else {
-//     carrito.push ({...producto})
-//     localStorage.setItem("carrito", JSON.stringify(carrito))
-// }

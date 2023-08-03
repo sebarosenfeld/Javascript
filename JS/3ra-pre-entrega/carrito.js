@@ -4,19 +4,7 @@ Swal.fire({
     showConfirmButton: false
 })
 
-let productosEnCarrito = []
-// let carritoEnLS =JSON.stringify (localStorage.getItem ("productosEnCarrito"))
-
-// if (carritoEnLS) {
-//     productosEnCarrito = carritoEnLS
-// }
-
-// if (localStorage.getItem("productosEnCarrito")) {
-//     productosEnCarrito = JSON.parse(localStorage.getItem("productosEnCarrito"))
-// } else {
-//     carrito.push ({...producto})
-//     localStorage.setItem("productosEnCarrito", JSON.stringify(productosEnCarrito))
-// }
+let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 let productCards = document.querySelector("#product-cards");
 
@@ -61,6 +49,8 @@ function actualizarCantidad(event) {
 
     let producto = productos.find((producto) => producto.id == parseInt(productoId))
     producto.cantidad = cantidad
+
+    localStorage.setItem("carrito", JSON.stringify(carrito))
 }
 
 function agregarAlCarrito(event) {
@@ -80,11 +70,10 @@ function agregarAlCarrito(event) {
             text: "has añadido el producto",
         }).showToast();
     }
+
     console.log("producto agregado al carrito - ID:" + productoId)
 
     console.log("carrito", carrito)
 
-    // localStorage.setItem("carrito", JSON.stringify(productosEnCarrito))
-
-
+    localStorage.setItem("carrito", JSON.stringify(carrito))
 }
