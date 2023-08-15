@@ -4,26 +4,17 @@
     padding-top: 10px;
 }
 
-.card {
-    height: 100%;
-    margin-top: 50px;
-    padding-top: 20px;
-
+.row{
+	list-style: none;
+    margin-left: 20px;
+    display: flex;
 }
 
-.card-img-top {
-    height: 50%;
+.row img {
+    width: 20%;
 }
 
-.card-title {
-    font-size: smaller;
-}
-
-.btn-agregar-carrito {
+.row button {
     background-color: rgb(51, 51, 80);
-    color: white;
-}
-
-.btn-agregar-carrito:hover {
     color: white;
 }
