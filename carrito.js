@@ -103,11 +103,9 @@ const agregarAlCarrito = (productos, id) => {
 };
 
 // FUNCION MOSTRAR CARRITO
-let botonCarrito = document.getElementById("botonCarrito")
-
 const mostrarCarrito = () => {
 	// Capturo el contenedor donde voy a renderizar los productos
-	let modalBody = document.getElementById ("botonCarrito")
+	let modalBody = document.getElementById ("modalBody")
 	// Limpio el contenedor por si había algo anteriormente
 	modalBody.innerHTML = "";
 	// Sólo agregaremos un contenedor con productos si el carrito no está vacío
@@ -207,6 +205,7 @@ buscador.addEventListener("input", () => {
     buscarInfo(buscador.value, productos)
 })
 
+let botonCarrito = document.querySelector("#botonCarrito")
 botonCarrito.addEventListener("click", () => {
     mostrarCarrito()
 })
