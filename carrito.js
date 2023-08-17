@@ -1,52 +1,52 @@
 // sweet alert para dar la bienvenida a la pagina
 Swal.fire({
-    title: 'Bienvenido a WIOR Insumos Hospitalarios',
-    timer: 1500,
-    showConfirmButton: false
+	title: 'Bienvenido a WIOR Insumos Hospitalarios',
+	timer: 1500,
+	showConfirmButton: false
 })
 
 // Iniciamos la variable carrito con el contenido de localStorage. Si no hay nada, lo iniciamos como un array vacío
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
 // Traigo el array desde el JSON
-function getProductos () {
-	return fetch('./productos.json') .then ((response) => response.json())
+function getProductos() {
+	return fetch('./productos.json').then((response) => response.json())
 }
 
 // FUNCION BUSCADOR
 function buscarInfo(buscado, array) {
 	// Recorro el array
-    let busqueda = array.filter(
-        (producto) => producto.nombreProducto.toLowerCase().includes(buscado.toLowerCase())
-    )
+	let busqueda = array.filter(
+		(producto) => producto.nombreProducto.toLowerCase().includes(buscado.toLowerCase())
+	)
 	// Establezco la variable
 	let coincidencia = document.getElementById("coincidencia")
 	// Si no encuentra lo que el cliente busca, devuelve "no hay coincidencias". Si lo encuentra, devuelve el producto
-    if (busqueda.length == 0) {
-        coincidencia.innerHTML = ""
-        let nuevoDiv = document.createElement("div")
-        nuevoDiv.innerHTML = `<p> No hay coincidencias</p>`
-        coincidencia.appendChild(nuevoDiv)
-        mostrarProductos(array)
-    } else {
-        coincidencia.innerHTML = ""
-        mostrarProductos(busqueda)
-    }
+	if (busqueda.length == 0) {
+		coincidencia.innerHTML = ""
+		let nuevoDiv = document.createElement("div")
+		nuevoDiv.innerHTML = `<p> No hay coincidencias</p>`
+		coincidencia.appendChild(nuevoDiv)
+		mostrarProductos(array)
+	} else {
+		coincidencia.innerHTML = ""
+		mostrarProductos(busqueda)
+	}
 }
 
 // FUNCION ORDENAR DE MAYOR A MENOR
 function ordenarMayorMenor(array) {
-    let mayorMenor = [].concat(array)
-    mayorMenor.sort((a, b) => (b.precio - a.precio))
-    mostrarProductos(mayorMenor)
+	let mayorMenor = [].concat(array)
+	mayorMenor.sort((a, b) => (b.precio - a.precio))
+	mostrarProductos(mayorMenor)
 }
 
 // FUNCION ORDENAR DE MENOR A MAYOR
 
 function ordenarMenorMayor(array) {
-    let menorMayor = [].concat(array)
-    menorMayor.sort((a, b) => (a.precio - b.precio))
-    mostrarProductos(menorMayor)
+	let menorMayor = [].concat(array)
+	menorMayor.sort((a, b) => (a.precio - b.precio))
+	mostrarProductos(menorMayor)
 }
 
 // MOSTRAR LOS PRODUCTOS
@@ -88,7 +88,7 @@ const agregarAlCarrito = (productos, id) => {
 		Toastify({
 			text: "has añadido el producto",
 			duration: 1000,
-	   	}).showToast();
+		}).showToast();
 	} else {
 		// Si el producto está en el carrito, lo buscamos y le incrementamos las unidades
 		const producto = carrito.find((producto) => producto.id === id);
@@ -97,7 +97,7 @@ const agregarAlCarrito = (productos, id) => {
 		Toastify({
 			text: "has añadido el producto",
 			duration: 1000,
-	  	}).showToast();
+		}).showToast();
 	}
 	// Guardamos el carrito en el localStorage para tenerlo actualizado si recargamos la página porque hicimos cambios
 	localStorage.setItem("carrito", JSON.stringify(carrito));
@@ -108,7 +108,7 @@ const agregarAlCarrito = (productos, id) => {
 // FUNCION MOSTRAR CARRITO
 const mostrarCarrito = () => {
 	// Capturo el contenedor donde voy a renderizar los productos
-	let modalBody = document.getElementById ("modal-body")
+	let modalBody = document.getElementById("modal-body")
 	// Limpio el contenedor por si había algo anteriormente
 	modalBody.innerHTML = "";
 	// Sólo agregaremos un contenedor con productos si el carrito no está vacío
@@ -210,21 +210,25 @@ const actualizarTotal = (contenedor) => {
 	contenedor.textContent = `Total: $${total}`;
 };
 
-getProductos ().then (productos => {
+getProductos().then(productos => {
 	mostrarProductos(productos)
+
+	let buscador = document.getElementById("buscador")
 	buscador.addEventListener("input", () => {
 		buscarInfo(buscador.value, productos)
 	})
+	
 	mostrarCarrito(productos)
-	let selectOrden = document.getElementById ("selectOrden")
+	
+	let selectOrden = document.getElementById("selectOrden")
 	selectOrden.addEventListener("change", () => {
-    	if (selectOrden.value == 1) {
-        ordenarMayorMenor(productos)
-    	}
+		if (selectOrden.value == 1) {
+			ordenarMayorMenor(productos)
+		}
 		else if (selectOrden.value == 2) {
-        ordenarMenorMayor(productos)
-    	} else {
-		mostrarCarrito(productos)
+			ordenarMenorMayor(productos)
+		} else {
+			mostrarCarrito(productos)
 		}
 	})
 })
